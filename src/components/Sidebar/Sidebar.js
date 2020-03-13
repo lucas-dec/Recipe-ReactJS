@@ -1,4 +1,6 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+
 import styled from "styled-components";
 import logoImage from "../../assets/logo.png";
 import { theme } from "../../Theme/MainStyle";
@@ -39,10 +41,45 @@ const Sidebar = () => (
   <Wrapper>
     <Logo src={logoImage} />
     <Navi>
-      <ButtonNav icon={recommendedIcon}>Recommended</ButtonNav>
-      <ButtonNav icon={dinnerIcon}>Main course</ButtonNav>
-      <ButtonNav icon={blenderIcon}>Drink / coctails</ButtonNav>
-      <ButtonNav icon={saladIcon}>Salad</ButtonNav>
+      <ButtonNav
+        as={NavLink}
+        exact
+        to="/"
+        activeclass="active"
+        icon={recommendedIcon}
+      >
+        Recommended
+      </ButtonNav>
+
+      <ButtonNav
+        as={NavLink}
+        exact
+        to="/maincourse"
+        activeclass="active"
+        icon={dinnerIcon}
+      >
+        Main Course
+      </ButtonNav>
+
+      <ButtonNav
+        as={NavLink}
+        exact
+        to="/coctails"
+        activeclass="active"
+        icon={blenderIcon}
+      >
+        Drink / coctails
+      </ButtonNav>
+
+      <ButtonNav
+        as={NavLink}
+        exact
+        to="/salad"
+        activeclass="active"
+        icon={saladIcon}
+      >
+        Salad
+      </ButtonNav>
     </Navi>
   </Wrapper>
 );

@@ -1,39 +1,34 @@
-import React from "react";
 import styled from "styled-components";
 import { theme } from "../../Theme/MainStyle";
 
-const Button = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+const ButtonNav = styled.button`
   width: 100%;
   height: 100px;
   font-size: 0.8rem;
   text-transform: uppercase;
   border-bottom: 1px solid ${theme.ligthGrey};
   transition: all 0.25s;
+  background-image: url(${({ icon }) => icon});
+  background-position: 50% 30%;
+  background-size: 32px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  text-align: center;
+  text-decoration: none;
+  padding-top: 5em;
 
   :last-of-type {
     border: none;
+  }
+  &.active {
+    border-right: 4px solid ${theme.primary};
+    background-color: ${theme.lightPrimary};
   }
 
   :hover {
     cursor: pointer;
     background-color: ${theme.ligthGrey};
   }
-
-  img {
-    display: block;
-    width: 32px;
-  }
 `;
-
-const ButtonNav = ({ children, icon }) => (
-  <Button>
-    <img src={icon} alt={icon} />
-    {children}
-  </Button>
-);
 
 export default ButtonNav;

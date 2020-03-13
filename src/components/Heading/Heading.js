@@ -7,5 +7,6 @@ const Heading = styled.h1`
   color: #fff;
   letter-spacing: 7px;
   font-family: "Permanent Marker", cursive;
+  margin: 0 0 1em 0;
 `;
 export default Heading;

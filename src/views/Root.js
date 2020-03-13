@@ -1,17 +1,19 @@
 import React from "react";
-import GlobalStyle from "../Theme/GlobalStyle";
-import { ThemeProvider } from "styled-components";
-import { theme } from "../Theme/MainStyle";
-import Sidebar from "../components/Sidebar/Sidebar";
-import Header from "../components/Header/Header";
+import { BrowserRouter, Route } from "react-router-dom";
+
+import RecommendedView from "./RecommendedView";
+import MainCourseView from "./MainCourseView";
+import CoctailsView from "./CoctailsView";
+import SaladView from "./Salad";
 
 function Root() {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Sidebar />
-      <Header />
-    </ThemeProvider>
+    <BrowserRouter>
+      <Route exact path="/" component={RecommendedView} />
+      <Route path="/maincourse" component={MainCourseView} />
+      <Route path="/coctails" component={CoctailsView} />
+      <Route path="/salad" component={SaladView} />
+    </BrowserRouter>
   );
 }
 
