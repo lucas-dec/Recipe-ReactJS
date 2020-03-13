@@ -21,7 +21,7 @@ const ButtonNav = styled.button`
     border: none;
   }
   &.active {
-    border-right: 4px solid ${theme.primary};
+    border-right: 6px solid ${theme.primary};
     background-color: ${theme.lightPrimary};
   }
 

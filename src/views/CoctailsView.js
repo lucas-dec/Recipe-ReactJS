@@ -1,11 +1,13 @@
 import React from "react";
 import MainTemplate from "../Templates/MainTemplate";
 import ItemsList from "../components/ItemsList/ItemsList";
+import Header from "../components/Header/Header";
+import bgImage from "../assets/bg-coctails.jpg";
 
 function CoctailsView() {
   return (
     <MainTemplate>
-      <h1>Drink and Coctails</h1>
+      <Header bgImage={bgImage}>Drink and Coctails</Header>
       <ItemsList />
     </MainTemplate>
   );

@@ -1,11 +1,13 @@
 import React from "react";
 import MainTemplate from "../Templates/MainTemplate";
 import ItemsList from "../components/ItemsList/ItemsList";
+import Header from "../components/Header/Header";
+import bgImage from "../assets/bg-salad.jpg";
 
 function SaladView() {
   return (
     <MainTemplate>
-      <h1>Salad</h1>
+      <Header bgImage={bgImage}>Salad</Header>
       <ItemsList />
     </MainTemplate>
   );

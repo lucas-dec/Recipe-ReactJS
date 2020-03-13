@@ -1,17 +1,20 @@
 import React from "react";
 import styled from "styled-components";
+import bgHeader from "../../assets/bg-header.jpg";
+import logoWhite from "../../assets/logo-white.png";
 import Heading from "../Heading/Heading";
+import Search from "../Search/Search";
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 30vh;
+  height: 45vh;
   background: linear-gradient(
       to right,
       rgba(255, 255, 255, 0.5),
       rgba(0, 0, 0, 0.6),
       rgba(255, 255, 255, 0.5)
     ),
-    url(${({ bgImage }) => bgImage});
+    url(${bgHeader});
 
   background-repeat: no-repeat;
   background-position: center;
@@ -22,10 +25,16 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const Header = ({ children, bgImage }) => (
-  <Wrapper bgImage={bgImage}>
-    <Heading>{children}</Heading>
+const Logo = styled.img`
+  width: 150px;
+`;
+
+const MainHeader = () => (
+  <Wrapper>
+    <Logo src={logoWhite} />
+    <Heading>Organic natura food</Heading>
+    <Search />
   </Wrapper>
 );
 
-export default Header;
+export default MainHeader;

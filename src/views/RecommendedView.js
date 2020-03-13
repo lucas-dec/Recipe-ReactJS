@@ -1,12 +1,23 @@
 import React from "react";
+import styled from "styled-components";
 import MainTemplate from "../Templates/MainTemplate";
-import Header from "../components/Header/Header";
+import MainHeader from "../components/MainHeader/MainHeader";
+import logoWhite from "../assets/logo-white.png";
 import ItemsList from "../components/ItemsList/ItemsList";
+import Search from "../components/Search/Search";
+
+const Logo = styled.img`
+  width: 150px;
+`;
 
 function RecommendedView() {
   return (
     <MainTemplate>
-      <Header />
+      <MainHeader>
+        <Logo src={logoWhite} />
+        Organic natura food
+        <Search />
+      </MainHeader>
       <ItemsList />
     </MainTemplate>
   );
