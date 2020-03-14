@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import bgHeader from "../../assets/bg-header.jpg";
-import logoWhite from "../../assets/logo-white.png";
+import bgHeader from "../../assets/background/bg-header.jpg";
+import logoWhite from "../../assets/logo/logo-white.png";
 import Heading from "../Heading/Heading";
 import Search from "../Search/Search";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { theme } from "../../Theme/MainStyle";
-import defaultImage from "../../assets/default-image.jpg";
+import defaultImage from "../../assets/background/default-image.jpg";
 
 const Wrapper = styled.div`
   width: 100%;

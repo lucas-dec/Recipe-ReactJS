@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import styled from "styled-components";
-import logoImage from "../../assets/logo.png";
+import logoImage from "../../assets/logo/logo.png";
 import { theme } from "../../Theme/MainStyle";
 import ButtonNav from "../ButonNav/ButtonNav";
 import recommendedIcon from "../../assets/icons/recommended.png";

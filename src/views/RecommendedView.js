@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import MainTemplate from "../Templates/MainTemplate";
 import MainHeader from "../components/MainHeader/MainHeader";
-import logoWhite from "../assets/logo-white.png";
+import logoWhite from "../assets/logo/logo-white.png";
 import ItemsList from "../components/ItemsList/ItemsList";
 import Search from "../components/Search/Search";
 
