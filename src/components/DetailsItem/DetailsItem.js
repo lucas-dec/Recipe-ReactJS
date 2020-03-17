@@ -46,7 +46,7 @@ const Image = styled.div`
   left: 250px;
   width: 600px;
   height: 400px;
-  background-image: url(${({ image }) => image ? `../assets/recipe-image/${image}` : defaultImage});
+  background-image: url(${({image})=> image ? require(`../../assets/recipe-image/${image}`) : defaultImage});
   background-position: 50%;
   background-repeat: no-repeat;
 `;
@@ -93,12 +93,6 @@ const IngredientsItem = styled.li`
   font-size: ${theme.smallFont};
 `;
 
-const Imgg = styled.img`
-  width: 50px;
-  height: 50px;
-  background-color: black;
-`;
-
 const DetailsItem = ({ recipe }) => {
   const {
     title,
@@ -114,7 +108,10 @@ const DetailsItem = ({ recipe }) => {
   const instructionList = instructions.map(instruction => instruction);
   const ingredientsList = extendedIngredients.map(ingredient => (
     <IngredientsItem>
-      <Imgg src="../../assets/ingredients-image/cheese.png" alt="" />
+      <img
+        src={require(`../../assets/ingredients-image/${ingredient.image}`)}
+        alt="product"
+      />
       {ingredient.measures.amount}
       {ingredient.measures.unit}
       {ingredient.name}

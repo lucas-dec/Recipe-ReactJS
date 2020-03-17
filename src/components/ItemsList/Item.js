@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 350px;
   padding: 1em;
-  background-image: url(${({ image }) => image ? `../assets/recipe-image/${image}` : defaultImage});
+  background-image: url(${({ image }) => image ? (require(`../../assets/recipe-image/${image}`)) : defaultImage});
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: cover;
@@ -54,7 +54,7 @@ class Item extends React.Component {
       return <Redirect to={`${path}/${recipe.id}`} />;
     }
     return (
-      <Wrapper onClick={this.handleShowDetails}>
+      <Wrapper onClick={this.handleShowDetails} image={recipe.image}>
         <WrapperContent>
           <Title>{recipe.title}</Title>
           <Summary>{`${recipe.description.substr(0, 250)}...`}</Summary>
