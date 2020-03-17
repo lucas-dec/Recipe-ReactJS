@@ -5,12 +5,14 @@ import MainHeader from "../components/MainHeader/MainHeader";
 import logoWhite from "../assets/logo/logo-white.png";
 import ItemsList from "../components/ItemsList/ItemsList";
 import Search from "../components/Search/Search";
+import { Recipes } from "../data/Recipes";
 
 const Logo = styled.img`
   width: 150px;
 `;
 
-function RecommendedView() {
+const RecommendedView = ({ location }) => {
+  const recipesRecommended = Recipes.filter(recipe => recipe.score > 80);
   return (
     <MainTemplate>
       <MainHeader>
@@ -18,9 +20,9 @@ function RecommendedView() {
         Organic natura food
         <Search />
       </MainHeader>
-      <ItemsList />
+      <ItemsList path={location.pathname} recipes={recipesRecommended} />
     </MainTemplate>
   );
-}
+};
 
 export default RecommendedView;

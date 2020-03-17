@@ -23,7 +23,7 @@ const Header = styled.div`
   border: 4px solid ${theme.lightPrimary};
   width: 70%;
   padding: 2em;
-  height: 220px;
+  height: 240px;
   display: flex;
 `;
 
@@ -32,21 +32,21 @@ const Name = styled(Heading)`
   color: ${theme.darkPrimary};
   width: 100%;
   letter-spacing: 0;
-  margin: auto;
+  margin-top: auto;
 `;
 
 const InfoWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
-
+//prettier-ignore
 const Image = styled.div`
   position: absolute;
   top: 220px;
   left: 250px;
   width: 600px;
   height: 400px;
-  background-image: url(${({ image }) => (image ? image : defaultImage)});
+  background-image: url(${({ image }) => image ? `../assets/recipe-image/${image}` : defaultImage});
   background-position: 50%;
   background-repeat: no-repeat;
 `;
@@ -93,66 +93,63 @@ const IngredientsItem = styled.li`
   font-size: ${theme.smallFont};
 `;
 
-const DetailsItem = () => (
-  <Wrapper>
-    <Header>
-      <Name>Alouette Chicken Paprika</Name>
-      <InfoWrapper>
-        <InfoItem icon={likesIcon}>234 likes</InfoItem>
-        <InfoItem icon={timeIcon}>45 min</InfoItem>
-        <InfoItem icon={qualityIcon}>100%</InfoItem>
-      </InfoWrapper>
-    </Header>
-    <Image />
-    <AboutWrapper>
-      <Label>About:</Label>
-      <Paragraph>
-        You can never have too many main course recipes, so give Alouette
-        Chicken Paprikan a try. This recipe makes 4 servings with 172 calories,
-        25g of protein, and 6g of fat each. For $1.28 per serving, this recipe
-        covers 16% of your daily requirements of vitamins and minerals. A few
-        people made this recipe, and 49 would say it hit the spot. If you have
-        alouette garlic & herbs spreadable cheese, butter, chicken breasts
-        halves, and a few other ingredients on hand, you can make it. It is a
-        good option if you're following a gluten free and primal diet. All
-        things considered, we decided this recipe deserves a spoonacular score
-        of 70%. This score is good. Try Chicken Alouette, Alouette Summer
-        Vegetables, and Alouette® Cranberry Brie for similar recipes.v
-      </Paragraph>
-    </AboutWrapper>
-    <InstructionWrapper>
-      <Label>Instruction:</Label>
-      <Instruction>
-        1.Coat chicken with a mixture of 6 tsp. of paprika and all of the garlic
-        powder.
-      </Instruction>
-      <Instruction>
-        2.Saut chicken in butter over medium heat about 5 minutes on each side.
-      </Instruction>
-      <Instruction>
-        3.Cover and simmer 15 minutes on low heat. Remove chicken from skillet,
-        reserving liquid.
-      </Instruction>
-      <Instruction>
-        4.Combine milk, Alouette Spreadable Cheese and remaining paprika in a
-        small mixing bowl.
-      </Instruction>
-      <Instruction>
-        5.Pour Alouette Garlic & Herbs Spreadable Cheese mixture into skillet,
-        stirring well with reserved liquid.
-      </Instruction>
-      <Instruction>
-        6.To serve, pour sauce over chicken. Use remaining sauce over rice,
-        pasta or potatoes.
-      </Instruction>
-    </InstructionWrapper>
-    <IngredientsList>
-      <Label>Ingredients</Label>
-      <IngredientsItem>cheese</IngredientsItem>
-      <IngredientsItem>water</IngredientsItem>
-      <IngredientsItem>salt</IngredientsItem>
-    </IngredientsList>
-  </Wrapper>
-);
+const Imgg = styled.img`
+  width: 50px;
+  height: 50px;
+  background-color: black;
+`;
+
+const DetailsItem = ({ recipe }) => {
+  const {
+    title,
+    image,
+    readyInMinutes,
+    aggregateLikes,
+    score,
+    instructions,
+    extendedIngredients,
+    description
+  } = recipe[0];
+
+  const instructionList = instructions.map(instruction => instruction);
+  const ingredientsList = extendedIngredients.map(ingredient => (
+    <IngredientsItem>
+      <Imgg src="../../assets/ingredients-image/cheese.png" alt="" />
+      {ingredient.measures.amount}
+      {ingredient.measures.unit}
+      {ingredient.name}
+    </IngredientsItem>
+  ));
+
+  return (
+    <Wrapper>
+      <Header>
+        <Name>{title}</Name>
+        <InfoWrapper>
+          <InfoItem icon={likesIcon}>{aggregateLikes} likes</InfoItem>
+          <InfoItem icon={timeIcon}>{readyInMinutes} min</InfoItem>
+          <InfoItem icon={qualityIcon}>{score}%</InfoItem>
+        </InfoWrapper>
+      </Header>
+      <Image image={image} />
+      <AboutWrapper>
+        <Label>About:</Label>
+        <Paragraph>{description}</Paragraph>
+      </AboutWrapper>
+      <InstructionWrapper>
+        <Label>Instruction:</Label>
+        {instructionList.length === 0 ? (
+          <h3>empty list of instructions</h3>
+        ) : (
+          <Instruction>{instructionList}</Instruction>
+        )}
+      </InstructionWrapper>
+      <IngredientsList>
+        <Label>Ingredients</Label>
+        {ingredientsList}
+      </IngredientsList>
+    </Wrapper>
+  );
+};
 
 export default DetailsItem;

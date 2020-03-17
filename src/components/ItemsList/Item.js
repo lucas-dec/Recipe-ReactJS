@@ -1,13 +1,14 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "../../Theme/MainStyle";
 import defaultImage from "../../assets/background/default-image.jpg";
-
+// prettier-ignore
 const Wrapper = styled.div`
   width: 100%;
   height: 350px;
   padding: 1em;
-  background-image: url(${({ image }) => (image ? image : defaultImage)});
+  background-image: url(${({ image }) => image ? `../assets/recipe-image/${image}` : defaultImage});
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: cover;
@@ -36,17 +37,31 @@ const Summary = styled.p`
   color: ${theme.lightGrey};
 `;
 
-const Item = () => (
-  <Wrapper>
-    <WrapperContent>
-      <Title>Item</Title>
-      <Summary>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima
-        architecto in, odio magnam eos a totam ex mollitia et vel natus nemo ea
-        assumenda, quas voluptates voluptatem ut ducimus voluptatibus?
-      </Summary>
-    </WrapperContent>
-  </Wrapper>
-);
+class Item extends React.Component {
+  state = {
+    redirect: false
+  };
+
+  handleShowDetails = () => {
+    this.setState({
+      redirect: true
+    });
+  };
+
+  render() {
+    const { path, recipe } = this.props;
+    if (this.state.redirect) {
+      return <Redirect to={`${path}/${recipe.id}`} />;
+    }
+    return (
+      <Wrapper onClick={this.handleShowDetails}>
+        <WrapperContent>
+          <Title>{recipe.title}</Title>
+          <Summary>{`${recipe.description.substr(0, 250)}...`}</Summary>
+        </WrapperContent>
+      </Wrapper>
+    );
+  }
+}
 
 export default Item;

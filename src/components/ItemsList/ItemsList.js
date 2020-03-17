@@ -11,15 +11,12 @@ const Wrapper = styled.div`
   padding: 20px;
 `;
 
-const ItemsList = () => (
-  <Wrapper>
-    <Item />
-    <Item />
-    <Item />
-    <Item />
-    <Item />
-    <Item />
-  </Wrapper>
-);
+const ItemsList = ({ path, recipes }) => {
+  const data = recipes.map(recipe => (
+    <Item key={recipe.id} recipe={recipe} path={path}></Item>
+  ));
+
+  return <Wrapper>{data}</Wrapper>;
+};
 
 export default ItemsList;
