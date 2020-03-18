@@ -1,18 +1,19 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import MainTemplate from "../Templates/MainTemplate";
 import ItemsList from "../components/ItemsList/ItemsList";
 import Header from "../components/Header/Header";
 import bgImage from "../assets/background/bg-salad.jpg";
-import { Recipes } from "../data/Recipes";
 
-const SaladView = ({ location }) => {
-  const recipesSalad = Recipes.filter(recipe => recipe.type === "salad");
+const SaladView = ({ location, salad }) => {
   return (
     <MainTemplate>
       <Header bgImage={bgImage}>Salad</Header>
-      <ItemsList path={location.pathname} recipes={recipesSalad} />
+      <ItemsList path={location.pathname} recipes={salad} />
     </MainTemplate>
   );
 };
 
-export default SaladView;
+const mapStateToProps = ({ salad }) => ({ salad });
+export default connect(mapStateToProps)(SaladView);

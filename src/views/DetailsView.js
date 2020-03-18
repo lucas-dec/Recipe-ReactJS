@@ -1,16 +1,19 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import MainTemplate from "../Templates/MainTemplate";
 import DetailsItem from "../components/DetailsItem/DetailsItem";
-import { Recipes } from "../data/Recipes";
 
-const DetailsView = ({ match }) => {
-  const recipe = Recipes.filter(
-    recipe => recipe.id === parseInt(match.params.id)
-  );
-  return (
-    <MainTemplate>
-      <DetailsItem recipe={recipe} />
-    </MainTemplate>
-  );
+const DetailsView = ({ match, data }) => {
+  const recipe = Object.values(data)
+    .flat()
+    .find(recipe => recipe.id === parseInt(match.params.id));
+
+  return <MainTemplate>{<DetailsItem recipe={recipe} />}</MainTemplate>;
 };
-export default DetailsView;
+
+const mapStateToProps = state => {
+  return { data: state };
+};
+
+export default connect(mapStateToProps)(DetailsView);

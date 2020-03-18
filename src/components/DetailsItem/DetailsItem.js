@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   width: 100%;
   padding-top: 2em;
   margin: auto;
-  padding-left: 150px;
+  padding-left: 100px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -77,7 +77,7 @@ const Instruction = styled.li`
 
 const IngredientsList = styled.ul`
   position: absolute;
-  width: 300px;
+  max-width: 15vw;
   padding: 1em;
   right: 0;
   top: 2em;
@@ -89,8 +89,20 @@ const IngredientsList = styled.ul`
 `;
 
 const IngredientsItem = styled.li`
+  display: flex;
+  width: 100%;
   padding: 1em 0;
+  align-items: center;
   font-size: ${theme.smallFont};
+  img {
+    width: 50px;
+    max-height: 50px;
+  }
+`;
+
+const ContentIngredient = styled.p`
+  width: 100%;
+  padding-left: 0.5em;
 `;
 
 const DetailsItem = ({ recipe }) => {
@@ -103,18 +115,18 @@ const DetailsItem = ({ recipe }) => {
     instructions,
     extendedIngredients,
     description
-  } = recipe[0];
+  } = recipe;
 
   const instructionList = instructions.map(instruction => instruction);
   const ingredientsList = extendedIngredients.map(ingredient => (
-    <IngredientsItem>
+    <IngredientsItem key={ingredient.name}>
       <img
         src={require(`../../assets/ingredients-image/${ingredient.image}`)}
         alt="product"
       />
-      {ingredient.measures.amount}
-      {ingredient.measures.unit}
-      {ingredient.name}
+      <ContentIngredient>
+        {`${ingredient.measures.amount} ${ingredient.measures.unit} ${ingredient.name}`}
+      </ContentIngredient>
     </IngredientsItem>
   ));
 
