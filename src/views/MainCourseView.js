@@ -2,15 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 
 import MainTemplate from "../Templates/MainTemplate";
+import bgHeader from "../assets/background/bg-main-course.jpg";
 import ItemsList from "../components/ItemsList/ItemsList";
-import Header from "../components/Header/Header";
-import bgImage from "../assets/background/bg-main-course.jpg";
+import LoadNewRecipes from "../components/LoadNewRecipes/LoadNewRecipes";
 
 const MainCourseView = ({ location, mainCourse }) => {
   return (
-    <MainTemplate>
-      <Header bgImage={bgImage}>Main course</Header>
+    <MainTemplate bgHeader={bgHeader} title="Main course">
       <ItemsList path={location.pathname} recipes={mainCourse} />
+      <LoadNewRecipes />
     </MainTemplate>
   );
 };

@@ -1,19 +1,28 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
+import { fetchRecipes } from "../actions/index";
 
 import MainTemplate from "../Templates/MainTemplate";
+import bgHeader from "../assets/background/bg-salad.jpg";
 import ItemsList from "../components/ItemsList/ItemsList";
-import Header from "../components/Header/Header";
-import bgImage from "../assets/background/bg-salad.jpg";
 
-const SaladView = ({ location, salad }) => {
-  return (
-    <MainTemplate>
-      <Header bgImage={bgImage}>Salad</Header>
-      <ItemsList path={location.pathname} recipes={salad} />
-    </MainTemplate>
-  );
-};
+class SaladView extends Component {
+  componentDidMount() {
+    this.props.fetchSalad();
+  }
 
+  render() {
+    const { location, salad } = this.props;
+    return (
+      <MainTemplate bgHeader={bgHeader} title="Salad">
+        <ItemsList path={location.pathname} recipes={salad} />
+      </MainTemplate>
+    );
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  fetchSalad: () => dispatch(fetchRecipes("salad"))
+});
 const mapStateToProps = ({ salad }) => ({ salad });
-export default connect(mapStateToProps)(SaladView);
+export default connect(mapStateToProps, mapDispatchToProps)(SaladView);

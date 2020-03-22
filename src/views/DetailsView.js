@@ -1,19 +1,52 @@
-import React from "react";
-import { connect } from "react-redux";
-
+import React, { Component } from "react";
 import MainTemplate from "../Templates/MainTemplate";
 import DetailsItem from "../components/DetailsItem/DetailsItem";
 
-const DetailsView = ({ match, data }) => {
-  const recipe = Object.values(data)
-    .flat()
-    .find(recipe => recipe.id === parseInt(match.params.id));
+class DetailsView extends Component {
+  state = {
+    activeRecipesCategory: "recommended"
+  };
 
-  return <MainTemplate>{<DetailsItem recipe={recipe} />}</MainTemplate>;
-};
+  componentDidMount() {
+    const {
+      match: { path }
+    } = this.props;
 
-const mapStateToProps = state => {
-  return { data: state };
-};
+    switch (path) {
+      case "/recommended/:id":
+        this.setState({
+          activeRecipesCategory: "recommended"
+        });
+        break;
+      case "/maincourse/:id":
+        this.setState({
+          activeRecipesCategory: "maincourse"
+        });
+        break;
+      case "/coctails/:id":
+        this.setState({
+          activeRecipesCategory: "coctails"
+        });
+        break;
+      case "/salad/:id":
+        this.setState({
+          activeRecipesCategory: "salad"
+        });
+        break;
+      default:
+        this.setState({
+          activeRecipesCategory: "recommended"
+        });
+    }
+  }
 
-export default connect(mapStateToProps)(DetailsView);
+  render() {
+    return (
+      <>
+        <MainTemplate>{<DetailsItem />}</MainTemplate>
+      </>
+    );
+  }
+}
+
+export default DetailsView;

@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 350px;
   padding: 1em;
-  background-image: url(${({ image }) => image ? (require(`../../assets/recipe-image/${image}`)) : defaultImage});
+  background-image: url(${({ image }) => image ? `https://spoonacular.com/recipeImages/${image}` : defaultImage});
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: cover;
@@ -32,11 +32,6 @@ const Title = styled.h1`
   margin-bottom: 0.5em;
 `;
 
-const Summary = styled.p`
-  font-size: 16px;
-  color: ${theme.lightGrey};
-`;
-
 class Item extends React.Component {
   state = {
     redirect: false
@@ -57,7 +52,6 @@ class Item extends React.Component {
       <Wrapper onClick={this.handleShowDetails} image={recipe.image}>
         <WrapperContent>
           <Title>{recipe.title}</Title>
-          <Summary>{`${recipe.description.substr(0, 250)}...`}</Summary>
         </WrapperContent>
       </Wrapper>
     );

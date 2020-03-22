@@ -2,14 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 
 import MainTemplate from "../Templates/MainTemplate";
+import bgHeader from "../assets/background/bg-coctails.jpg";
 import ItemsList from "../components/ItemsList/ItemsList";
-import Header from "../components/Header/Header";
-import bgImage from "../assets/background/bg-coctails.jpg";
 
 const CoctailsView = ({ location, coctails }) => {
   return (
-    <MainTemplate>
-      <Header bgImage={bgImage}>Drink and Coctails</Header>
+    <MainTemplate bgHeader={bgHeader} title={"Drink and Coctails"}>
       <ItemsList path={location.pathname} recipes={coctails} />
     </MainTemplate>
   );

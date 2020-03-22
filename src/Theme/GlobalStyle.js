@@ -16,7 +16,7 @@ body{
     height: 100%;
     font-size: 16px;
     font-family: 'Oswald', sans-serif;
-    padding-left: 15vw;
+    /* padding-left: 15vw; */
 }
 
 `;

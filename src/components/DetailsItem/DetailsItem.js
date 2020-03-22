@@ -116,6 +116,10 @@ const DetailsItem = ({ recipe }) => {
     extendedIngredients,
     description
   } = recipe;
+  const {
+    match: { path }
+  } = this.props;
+  console.log(path);
 
   const instructionList = instructions.map(instruction => instruction);
   const ingredientsList = extendedIngredients.map(ingredient => (
