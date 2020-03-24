@@ -12,6 +12,10 @@ class CoctailsView extends Component {
     if (this.props.coctails.length === 0) this.props.fetchRecipes("drink");
   }
 
+  handleLoadNewRecipes = () => {
+    this.props.fetchRecipes("drink");
+  };
+
   render() {
     const { location, coctails, isLoading, errMess } = this.props;
     return (

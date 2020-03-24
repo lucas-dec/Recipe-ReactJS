@@ -13,6 +13,10 @@ class MainCourseView extends Component {
       this.props.fetchRecipes("main course");
   }
 
+  handleLoadNewRecipes = () => {
+    this.props.fetchRecipes("main course");
+  };
+
   render() {
     const { location, mainCourse, isLoading, errMess } = this.props;
     return (

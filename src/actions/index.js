@@ -7,7 +7,7 @@ import {
 export const fetchRecipes = category => dispatch => {
   dispatch(recipesLoading(true));
   return fetch(
-    `https://api.spoonacular.com/recipes/random?number=1&tags=${category}&apiKey=bff6f87cb12a492ab3b79fcdc277e1c8`
+    `https://api.spoonacular.com/recipes/random?number=6&tags=${category}&apiKey=bff6f87cb12a492ab3b79fcdc277e1c8`
   )
     .then(
       response => {

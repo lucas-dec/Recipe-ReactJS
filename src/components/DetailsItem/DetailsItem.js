@@ -39,15 +39,21 @@ const InfoWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
-//prettier-ignore
+
 const Image = styled.div`
+  border: 4px solid ${theme.lightPrimary};
+  padding: 1em;
   position: absolute;
   top: 220px;
-  left: 250px;
-  width: 600px;
-  height: 400px;
-  background-image: url(${({image})=> image ? require(`../../assets/recipe-image/${image}`) : defaultImage});
+  left: 13vw;
+  width: 50%;
+  height: 50%;
+  max-width: 600px;
+  max-height: 400px;
+  background: #fff;
+  background-image: url(${({ image }) => (image ? image : defaultImage)});
   background-position: 50%;
+  background-size: cover;
   background-repeat: no-repeat;
 `;
 
@@ -62,15 +68,24 @@ const AboutWrapper = styled.div`
 const Paragraph = styled.p`
   font-size: ${theme.normalFont};
   color: ${theme.dark};
+
+  a {
+    color: ${theme.dark};
+    font-weight: 500;
+    font-style: italic;
+    text-decoration: none;
+  }
 `;
-const InstructionWrapper = styled.ol`
+const InstructionWrapper = styled.div`
   width: 70%;
   height: auto;
   padding: 2em;
+`;
+const InstructionList = styled.ol`
   list-style-position: inside;
 `;
 
-const Instruction = styled.li`
+const InstructionItem = styled.li`
   font-size: ${theme.normalFont};
   color: ${theme.dark};
 `;
@@ -111,28 +126,34 @@ const DetailsItem = ({ recipe }) => {
     image,
     readyInMinutes,
     aggregateLikes,
-    score,
-    instructions,
+    spoonacularScore,
+    analyzedInstructions,
     extendedIngredients,
-    description
+    summary
   } = recipe;
-  const {
-    match: { path }
-  } = this.props;
-  console.log(path);
 
-  const instructionList = instructions.map(instruction => instruction);
+  console.log(extendedIngredients);
+
+  const instructionList = analyzedInstructions[0].steps.map(instruction => (
+    <InstructionItem key={instruction.number}>
+      {instruction.step}
+    </InstructionItem>
+  ));
+
   const ingredientsList = extendedIngredients.map(ingredient => (
-    <IngredientsItem key={ingredient.name}>
+    <IngredientsItem key={ingredient.id}>
       <img
-        src={require(`../../assets/ingredients-image/${ingredient.image}`)}
-        alt="product"
+        src={`https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}`}
+        alt={ingredient.name}
       />
       <ContentIngredient>
-        {`${ingredient.measures.amount} ${ingredient.measures.unit} ${ingredient.name}`}
+        {`${ingredient.measures.metric.amount} ${ingredient.measures.metric.unitShort} ${ingredient.name}`}
       </ContentIngredient>
     </IngredientsItem>
   ));
+  const description = () => {
+    return { __html: summary };
+  };
 
   return (
     <Wrapper>
@@ -141,20 +162,20 @@ const DetailsItem = ({ recipe }) => {
         <InfoWrapper>
           <InfoItem icon={likesIcon}>{aggregateLikes} likes</InfoItem>
           <InfoItem icon={timeIcon}>{readyInMinutes} min</InfoItem>
-          <InfoItem icon={qualityIcon}>{score}%</InfoItem>
+          <InfoItem icon={qualityIcon}>{spoonacularScore}%</InfoItem>
         </InfoWrapper>
       </Header>
       <Image image={image} />
       <AboutWrapper>
         <Label>About:</Label>
-        <Paragraph>{description}</Paragraph>
+        <Paragraph dangerouslySetInnerHTML={description()} />
       </AboutWrapper>
       <InstructionWrapper>
         <Label>Instruction:</Label>
         {instructionList.length === 0 ? (
           <h3>empty list of instructions</h3>
         ) : (
-          <Instruction>{instructionList}</Instruction>
+          <InstructionList>{instructionList}</InstructionList>
         )}
       </InstructionWrapper>
       <IngredientsList>
