@@ -11,7 +11,6 @@ export const fetchRecipes = category => dispatch => {
   )
     .then(
       response => {
-        console.log(response);
         if (response.ok) {
           return response;
         } else {
@@ -32,7 +31,6 @@ export const fetchRecipes = category => dispatch => {
     )
     .then(response => response.json())
     .then(recipes => {
-      console.log(recipes);
       dispatch(recipesSuccess(category, recipes));
     })
     .catch(error => dispatch(recipesFailed(error.message)));

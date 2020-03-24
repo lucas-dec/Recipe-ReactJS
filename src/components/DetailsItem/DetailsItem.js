@@ -132,8 +132,6 @@ const DetailsItem = ({ recipe }) => {
     summary
   } = recipe;
 
-  console.log(extendedIngredients);
-
   const instructionList = analyzedInstructions[0].steps.map(instruction => (
     <InstructionItem key={instruction.number}>
       {instruction.step}
@@ -147,7 +145,9 @@ const DetailsItem = ({ recipe }) => {
         alt={ingredient.name}
       />
       <ContentIngredient>
-        {`${ingredient.measures.metric.amount} ${ingredient.measures.metric.unitShort} ${ingredient.name}`}
+        {`${Math.floor(ingredient.measures.metric.amount)} ${
+          ingredient.measures.metric.unitShort
+        } ${ingredient.name}`}
       </ContentIngredient>
     </IngredientsItem>
   ));

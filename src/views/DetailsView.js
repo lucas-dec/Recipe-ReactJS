@@ -6,7 +6,8 @@ class DetailsView extends Component {
   state = {
     activeRecipesCategory: "recommended",
     isLoading: true,
-    recipe: {}
+    error: null,
+    recipe: null
   };
 
   componentDidMount() {
@@ -45,12 +46,25 @@ class DetailsView extends Component {
       const API = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`;
 
       fetch(API)
-        .then(response => {
-          if (response.ok) return response;
-          else {
-            throw Error;
+        .then(
+          response => {
+            if (response.ok) return response;
+            else {
+              const error = new Error(
+                `Error ${response.status} ${response.statusText}. Please try agine ...`
+              );
+              error.response = response;
+              throw error;
+            }
+          },
+
+          error => {
+            const errMessage = new Error(
+              `${error.message}. Please check your network connection and try agine later.`
+            );
+            throw errMessage;
           }
-        })
+        )
         .then(response => response.json())
         .then(recipeInfo => {
           this.setState({
@@ -58,7 +72,12 @@ class DetailsView extends Component {
             recipe: recipeInfo
           });
         })
-        .catch(err => new Error(err));
+        .catch(err => {
+          this.setState({
+            isLoading: false,
+            error: err.message
+          });
+        });
     };
 
     fetchDetailRecipe(params.id);
@@ -68,11 +87,9 @@ class DetailsView extends Component {
     return (
       <>
         <DetailsTemplate>
-          {this.state.isLoading ? (
-            <h1>Your recipe is loading ...</h1>
-          ) : (
-            <DetailsItem recipe={this.state.recipe} />
-          )}
+          {this.state.isLoading && <h1>Your recipe is loading ...</h1>}
+          {this.state.error && <h1>{this.state.error}</h1>}
+          {this.state.recipe && <DetailsItem recipe={this.state.recipe} />}
         </DetailsTemplate>
       </>
     );

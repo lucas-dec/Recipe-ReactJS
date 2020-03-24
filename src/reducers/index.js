@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   isLoading: true,
-  errMess: null,
+  error: null,
   mainCourse: [],
   salad: [],
   drink: []
@@ -18,7 +18,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: true,
-        errMess: null
+        error: null
       };
     case RECIPES_SUCCESS:
       if (action.payload.category === "main course")
@@ -26,7 +26,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        errMess: null,
+        error: null,
         [action.payload.category]: [
           ...state[action.payload.category],
           ...action.payload.recipes.recipes
@@ -36,7 +36,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        errMess: action.payload
+        error: action.payload
       };
     default:
       return state;

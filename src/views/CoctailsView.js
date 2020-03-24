@@ -38,7 +38,7 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => {
   return {
     isLoading: state.isLoading,
-    errMess: state.errMess,
+    errMess: state.error,
     coctails: state.drink
   };
 };

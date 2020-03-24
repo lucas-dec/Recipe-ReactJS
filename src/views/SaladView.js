@@ -40,7 +40,7 @@ const mapStateToProps = state => {
   return {
     salad: state.salad,
     isLoading: state.isLoading,
-    errMess: state.errMess
+    errMess: state.error
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SaladView);
