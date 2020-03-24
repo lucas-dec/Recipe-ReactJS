@@ -18,8 +18,8 @@ const Wrapper = styled.button`
   }
 `;
 
-const LoadNewRecipes = () => (
-  <Wrapper>
+const LoadNewRecipes = ({ newRecipes }) => (
+  <Wrapper onClick={newRecipes}>
     <img src={LoadIcon} alt="Load icon" />
     load more recipes
   </Wrapper>

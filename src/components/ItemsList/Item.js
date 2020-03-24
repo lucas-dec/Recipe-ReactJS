@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 350px;
   padding: 1em;
-  background-image: url(${({ image }) => image ? `https://spoonacular.com/recipeImages/${image}` : defaultImage});
+  background-image: url(${({ image }) => image ? image : defaultImage});
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: cover;
