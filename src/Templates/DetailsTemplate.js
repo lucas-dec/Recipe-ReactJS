@@ -7,6 +7,9 @@ import { theme } from "../Theme/MainStyle";
 import Sidebar from "../components/Sidebar/Sidebar";
 
 const WrapperContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   height: 100%;
   padding-left: 13vw;

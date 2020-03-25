@@ -5,6 +5,7 @@ import { fetchRecipes } from "../actions/index";
 import MainTemplate from "../Templates/MainTemplate";
 import bgHeader from "../assets/background/bg-salad.jpg";
 import ItemsList from "../components/ItemsList/ItemsList";
+import Notification from "../components/Notification/Notification";
 import LoadNewRecipes from "../components/LoadNewRecipes/LoadNewRecipes";
 
 class SaladView extends Component {
@@ -21,8 +22,8 @@ class SaladView extends Component {
     return (
       <MainTemplate bgHeader={bgHeader} title="Salad">
         <ItemsList path={location.pathname} recipes={salad} />
-        {isLoading && <h1>Recipes are loading ... </h1>}
-        {errMess && <h1>{errMess}</h1>}
+        {isLoading && <Notification />}
+        {errMess && <Notification error={errMess} />}
 
         {salad.length > 0 && (
           <LoadNewRecipes newRecipes={this.handleLoadNewRecipes} />

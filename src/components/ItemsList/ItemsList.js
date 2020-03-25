@@ -12,16 +12,11 @@ const Wrapper = styled.div`
 `;
 
 const ItemsList = ({ path, recipes }) => {
-  // const data = recipes.map(recipe => (
-  //   <Item key={recipe.id} recipe={recipe} path={path}></Item>
-  // ));
+  const data = recipes.map(recipe => (
+    <Item key={recipe.id} recipe={recipe} path={path}></Item>
+  ));
 
-  return (
-    <Wrapper>
-      {/* {data} */}
-      {console.log(recipes)}
-    </Wrapper>
-  );
+  return <Wrapper>{data}</Wrapper>;
 };
 
 export default ItemsList;

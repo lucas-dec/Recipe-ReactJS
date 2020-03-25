@@ -5,6 +5,7 @@ import { fetchRecipes } from "../actions/index";
 import MainTemplate from "../Templates/MainTemplate";
 import bgHeader from "../assets/background/bg-main-course.jpg";
 import ItemsList from "../components/ItemsList/ItemsList";
+import Notification from "../components/Notification/Notification";
 import LoadNewRecipes from "../components/LoadNewRecipes/LoadNewRecipes";
 
 class MainCourseView extends Component {
@@ -22,8 +23,8 @@ class MainCourseView extends Component {
     return (
       <MainTemplate bgHeader={bgHeader} title={"main course"}>
         <ItemsList path={location.pathname} recipes={mainCourse} />
-        {isLoading && <h1>Recipes are loading ... </h1>}
-        {errMess && <h1>{errMess}</h1>}
+        {isLoading && <Notification />}
+        {errMess && <Notification error={errMess} />}
 
         {mainCourse.length > 0 && (
           <LoadNewRecipes newRecipes={this.handleLoadNewRecipes} />

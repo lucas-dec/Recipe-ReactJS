@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import DetailsTemplate from "../Templates/DetailsTemplate";
 import DetailsItem from "../components/DetailsItem/DetailsItem";
+import Notification from "../components/Notification/Notification";
 
 class DetailsView extends Component {
   state = {
     activeRecipesCategory: "recommended",
     isLoading: true,
-    error: null,
+    errMess: null,
     recipe: null
   };
 
@@ -69,13 +70,14 @@ class DetailsView extends Component {
         .then(recipeInfo => {
           this.setState({
             isLoading: false,
-            recipe: recipeInfo
+            recipe: recipeInfo,
+            errMess: null
           });
         })
         .catch(err => {
           this.setState({
             isLoading: false,
-            error: err.message
+            errMess: err.message
           });
         });
     };
@@ -87,8 +89,9 @@ class DetailsView extends Component {
     return (
       <>
         <DetailsTemplate>
-          {this.state.isLoading && <h1>Your recipe is loading ...</h1>}
-          {this.state.error && <h1>{this.state.error}</h1>}
+          {this.state.isLoading && <Notification />}
+          {this.state.errMess && <Notification error={this.state.errMess} />}
+
           {this.state.recipe && <DetailsItem recipe={this.state.recipe} />}
         </DetailsTemplate>
       </>

@@ -5,7 +5,7 @@ import ErrorIcon from "../../assets/icons/error.png";
 import InfoIcon from "../../assets/icons/info.png";
 
 const WrapperNotification = styled.div`
-  width: 50%;
+  width: 30%;
   margin-top: 2em;
   height: auto;
   display: flex;
@@ -35,12 +35,18 @@ const Icon = styled.img`
 const Info = styled.p`
   color: ${({ error }) => (error ? theme.primary : theme.dark)};
   font-size: ${theme.mediumFont};
+  text-align: center;
+  margin-top: 0.5em;
 `;
 
 const Notification = ({ children, error }) => (
   <WrapperNotification>
     <Icon src={error ? ErrorIcon : InfoIcon} />
-    <Info error>{children}</Info>
+    <Info error={error}>
+      {error
+        ? error
+        : "We are looking for recipes specially for You ! please, wait a second ..."}
+    </Info>
   </WrapperNotification>
 );
 

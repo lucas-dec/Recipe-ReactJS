@@ -1,29 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "../../Theme/MainStyle";
 
 const Form = styled.form`
   position: relative;
   width: 300px;
-`;
-
-const Label = styled.label`
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  font-size: ${theme.smallFont};
-  color: ${theme.ligthGrey};
-  line-height: 1rem;
-  pointer-events: none;
-  transition: 180ms ease;
-
-  &:active {
-    top: 8px !important;
-    font-size: 8px !important;
-    line-height: 10px !important;
-    color: #ff8b8b;
-  }
 `;
 
 const Input = styled.input`
@@ -39,30 +21,49 @@ const Input = styled.input`
   padding-top: 11px;
   color: ${theme.ligthGrey};
   background-color: ${theme.lightPrimary};
+  text-align: center;
 
   &:focus {
     outline: none;
-  }
-
-  &:active {
-    outline: none;
-  }
-
-  &:focus {
     border-bottom: solid 4px #ee4540;
+  }
+
+  &::placeholder {
+    color: white;
   }
 `;
 
-const Search = () => {
-  const handleFocus = () => {
-    console.log("cos");
+class Search extends Component {
+  state = {
+    redirect: false,
+    value: ""
   };
-  return (
-    <Form>
-      <Label htmlFor="search">What re you looking for ?</Label>
-      <Input onFocus={handleFocus} type="text" id="search"></Input>
-    </Form>
-  );
-};
-
+  handleInputValue = e => {
+    this.setState({
+      value: e.target.value
+    });
+  };
+  handleSearch = e => {
+    e.preventDefault();
+    this.setState({
+      redirect: true
+    });
+  };
+  render() {
+    if (this.state.redirect) {
+      return <Redirect to={`/search/${this.state.value}`} />;
+    }
+    return (
+      <Form onSubmit={this.handleSearch}>
+        <Input
+          onChange={this.handleInputValue}
+          type="text"
+          id="search"
+          value={this.state.value}
+          placeholder="What re you looking for ?"
+        ></Input>
+      </Form>
+    );
+  }
+}
 export default Search;

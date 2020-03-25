@@ -8,7 +8,7 @@ import Notification from "../components/Notification/Notification";
 class RecommendedView extends Component {
   state = {
     isLoading: true,
-    error: null,
+    errMess: null,
     recipes: null
   };
 
@@ -45,22 +45,19 @@ class RecommendedView extends Component {
       .catch(err => {
         this.setState({
           isLoading: false,
-          error: err.message
+          errMess: err.message
         });
       });
   }
 
   render() {
     const { location } = this.props;
-    const { isLoading, error, recipes } = this.state;
+    const { isLoading, errMess, recipes } = this.state;
+    console.log(errMess);
     return (
       <MainTemplate bgHeader={bgHeader} title="Organic natura food" mainHeader>
-        {isLoading && (
-          <Notification>
-            We are looking recipes specialy for You ! please, wait a second ...
-          </Notification>
-        )}
-        {error && <Notification error>{error}</Notification>}
+        {isLoading && <Notification />}
+        {errMess && <Notification error={errMess} />}
         {recipes && <ItemsList path={location.pathname} recipes={recipes} />}
       </MainTemplate>
     );

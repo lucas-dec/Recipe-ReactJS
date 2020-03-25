@@ -8,6 +8,7 @@ import MainCourseView from "./MainCourseView";
 import CoctailsView from "./CoctailsView";
 import SaladView from "./SaladView";
 import DetailsView from "./DetailsView";
+import SearchView from "./SearchView";
 
 function Root() {
   return (
@@ -26,6 +27,10 @@ function Root() {
 
           <Route exact path="/salad" component={SaladView} />
           <Route path="/salad/:id" component={DetailsView} />
+
+          <Route exact path="/search" component={SearchView} />
+          <Route exact path="/search/:search" component={SearchView} />
+          <Route path="/search/:search/:id" component={DetailsView} />
         </Switch>
       </BrowserRouter>
     </Provider>

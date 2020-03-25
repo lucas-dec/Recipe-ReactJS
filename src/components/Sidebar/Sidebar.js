@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 import styled from "styled-components";
 import logoImage from "../../assets/logo/logo.png";
@@ -39,7 +39,9 @@ const Navi = styled.div`
 
 const Sidebar = () => (
   <Wrapper>
-    <Logo src={logoImage} />
+    <Link to="/">
+      <Logo src={logoImage} />
+    </Link>
     <Navi>
       <ButtonNav
         as={NavLink}

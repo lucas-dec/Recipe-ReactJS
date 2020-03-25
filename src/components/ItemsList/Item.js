@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 350px;
   padding: 1em;
-  background-image: url(${({ image }) => image ? image : defaultImage});
+  background-image: url(${({ image }) => image ? `https://spoonacular.com/recipeImages/${image}-556x370.jpg` : defaultImage});
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: cover;
@@ -48,8 +48,9 @@ class Item extends React.Component {
     if (this.state.redirect) {
       return <Redirect to={`${path}/${recipe.id}`} />;
     }
+    console.log(path);
     return (
-      <Wrapper onClick={this.handleShowDetails} image={recipe.image}>
+      <Wrapper onClick={this.handleShowDetails} image={recipe.id}>
         <WrapperContent>
           <Title>{recipe.title}</Title>
         </WrapperContent>
