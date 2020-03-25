@@ -48,7 +48,6 @@ class Item extends React.Component {
     if (this.state.redirect) {
       return <Redirect to={`${path}/${recipe.id}`} />;
     }
-    console.log(path);
     return (
       <Wrapper onClick={this.handleShowDetails} image={recipe.id}>
         <WrapperContent>

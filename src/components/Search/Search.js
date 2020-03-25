@@ -38,21 +38,30 @@ class Search extends Component {
     redirect: false,
     value: ""
   };
+
   handleInputValue = e => {
-    this.setState({
-      value: e.target.value
-    });
+    if (e.target.value) {
+      this.setState({
+        value: e.target.value
+      });
+    }
   };
   handleSearch = e => {
     e.preventDefault();
-    this.setState({
-      redirect: true
-    });
+    if (this.state.value) {
+      this.setState({
+        redirect: true
+      });
+    }
   };
   render() {
     if (this.state.redirect) {
+      this.setState({
+        redirect: false
+      });
       return <Redirect to={`/search/${this.state.value}`} />;
     }
+
     return (
       <Form onSubmit={this.handleSearch}>
         <Input

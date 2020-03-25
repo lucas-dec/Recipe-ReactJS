@@ -5,13 +5,22 @@ import ErrorIcon from "../../assets/icons/error.png";
 import InfoIcon from "../../assets/icons/info.png";
 
 const WrapperNotification = styled.div`
+  position: fixed;
+  top: 65%;
+  border: 5px solid;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.7);
+  border-color: ${({ error }) => (error ? theme.primary : theme.dark)};
+  transform: translateY(-50%);
   width: 30%;
-  margin-top: 2em;
-  height: auto;
+  height: 30vh;
+  padding: 2em;
+  background-color: rgba(255, 255, 255, 0.8);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 `;
 
 const Pulse = keyframes`
@@ -40,7 +49,7 @@ const Info = styled.p`
 `;
 
 const Notification = ({ children, error }) => (
-  <WrapperNotification>
+  <WrapperNotification error={error}>
     <Icon src={error ? ErrorIcon : InfoIcon} />
     <Info error={error}>
       {error

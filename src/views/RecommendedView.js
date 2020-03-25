@@ -53,7 +53,6 @@ class RecommendedView extends Component {
   render() {
     const { location } = this.props;
     const { isLoading, errMess, recipes } = this.state;
-    console.log(errMess);
     return (
       <MainTemplate bgHeader={bgHeader} title="Organic natura food" mainHeader>
         {isLoading && <Notification />}
