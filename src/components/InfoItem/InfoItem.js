@@ -25,6 +25,7 @@ const Label = styled.p`
   color: ${theme.lightPrimary};
   font-size: ${theme.mediumFont};
   margin: 0;
+  text-align: center;
 `;
 const InfoItem = ({ icon, children }) => (
   <InfoBox>

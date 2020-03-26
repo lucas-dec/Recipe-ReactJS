@@ -40,7 +40,6 @@ const Logo = styled.img`
 
 const Header = ({ bgImage, children, infoPath, ...props }) => (
   <Wrapper bgImage={bgImage} mainHeader={props.mainHeader}>
-    {console.log(infoPath)}
     {props.mainHeader && <Logo src={logoWhite} />}
     <Heading>{children}</Heading>
     {props.mainHeader && <Search />}

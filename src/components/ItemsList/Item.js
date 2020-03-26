@@ -29,7 +29,7 @@ const WrapperContent = styled.div`
 
 const Title = styled.h1`
   color: ${theme.lightGrey};
-  margin-bottom: 0.5em;
+  font-size: ${theme.mediumFont};
 `;
 
 class Item extends React.Component {

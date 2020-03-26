@@ -4,6 +4,7 @@ import MainTemplate from "../Templates/MainTemplate";
 import bgHeader from "../assets/background/bg-header.jpg";
 import ItemsList from "../components/ItemsList/ItemsList";
 import Notification from "../components/Notification/Notification";
+import { removeDuplicateRecipe } from "../functions/functions";
 
 class RecommendedView extends Component {
   state = {
@@ -53,11 +54,15 @@ class RecommendedView extends Component {
   render() {
     const { location } = this.props;
     const { isLoading, errMess, recipes } = this.state;
+    let processedRecipes = null;
+    if (recipes) processedRecipes = removeDuplicateRecipe(recipes);
     return (
       <MainTemplate bgHeader={bgHeader} title="Organic natura food" mainHeader>
         {isLoading && <Notification />}
         {errMess && <Notification error={errMess} />}
-        {recipes && <ItemsList path={location.pathname} recipes={recipes} />}
+        {processedRecipes && (
+          <ItemsList path={location.pathname} recipes={processedRecipes} />
+        )}
       </MainTemplate>
     );
   }

@@ -44,7 +44,7 @@ const Image = styled.div`
   border: 4px solid ${theme.lightPrimary};
   padding: 1em;
   position: absolute;
-  top: 220px;
+  top: 240px;
   left: 13vw;
   width: 50%;
   height: 50%;
@@ -138,8 +138,8 @@ const DetailsItem = ({ recipe }) => {
     </InstructionItem>
   ));
 
-  const ingredientsList = extendedIngredients.map(ingredient => (
-    <IngredientsItem key={ingredient.id}>
+  const ingredientsList = extendedIngredients.map((ingredient, index) => (
+    <IngredientsItem key={ingredient.originalString}>
       <img
         src={`https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}`}
         alt={ingredient.name}

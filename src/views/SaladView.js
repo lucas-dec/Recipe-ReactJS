@@ -7,6 +7,7 @@ import bgHeader from "../assets/background/bg-salad.jpg";
 import ItemsList from "../components/ItemsList/ItemsList";
 import Notification from "../components/Notification/Notification";
 import LoadNewRecipes from "../components/LoadNewRecipes/LoadNewRecipes";
+import { removeDuplicateRecipe } from "../functions/functions";
 
 class SaladView extends Component {
   componentDidMount() {
@@ -19,13 +20,13 @@ class SaladView extends Component {
 
   render() {
     const { location, salad, isLoading, errMess } = this.props;
+    const processedRecipes = removeDuplicateRecipe(salad);
     return (
       <MainTemplate bgHeader={bgHeader} title="Salad">
-        <ItemsList path={location.pathname} recipes={salad} />
+        <ItemsList path={location.pathname} recipes={processedRecipes} />
         {isLoading && <Notification />}
         {errMess && <Notification error={errMess} />}
-
-        {salad.length > 0 && (
+        {processedRecipes.length > 0 && (
           <LoadNewRecipes newRecipes={this.handleLoadNewRecipes} />
         )}
       </MainTemplate>

@@ -7,6 +7,7 @@ import bgHeader from "../assets/background/bg-main-course.jpg";
 import ItemsList from "../components/ItemsList/ItemsList";
 import Notification from "../components/Notification/Notification";
 import LoadNewRecipes from "../components/LoadNewRecipes/LoadNewRecipes";
+import { removeDuplicateRecipe } from "../functions/functions";
 
 class MainCourseView extends Component {
   componentDidMount() {
@@ -20,13 +21,15 @@ class MainCourseView extends Component {
 
   render() {
     const { location, mainCourse, isLoading, errMess } = this.props;
+    const processedRecipes = removeDuplicateRecipe(mainCourse);
+
     return (
       <MainTemplate bgHeader={bgHeader} title={"main course"}>
-        <ItemsList path={location.pathname} recipes={mainCourse} />
+        <ItemsList path={location.pathname} recipes={processedRecipes} />
         {isLoading && <Notification />}
         {errMess && <Notification error={errMess} />}
 
-        {mainCourse.length > 0 && (
+        {processedRecipes.length > 0 && (
           <LoadNewRecipes newRecipes={this.handleLoadNewRecipes} />
         )}
       </MainTemplate>

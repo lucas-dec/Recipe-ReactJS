@@ -7,6 +7,7 @@ import bgHeader from "../assets/background/bg-coctails.jpg";
 import ItemsList from "../components/ItemsList/ItemsList";
 import Notification from "../components/Notification/Notification";
 import LoadNewRecipes from "../components/LoadNewRecipes/LoadNewRecipes";
+import { removeDuplicateRecipe } from "../functions/functions";
 
 class CoctailsView extends Component {
   componentDidMount() {
@@ -19,13 +20,13 @@ class CoctailsView extends Component {
 
   render() {
     const { location, coctails, isLoading, errMess } = this.props;
+    const processedRecipes = removeDuplicateRecipe(coctails);
     return (
       <MainTemplate bgHeader={bgHeader} title={"Drink and Coctails"}>
-        <ItemsList path={location.pathname} recipes={coctails} />
+        <ItemsList path={location.pathname} recipes={processedRecipes} />
         {isLoading && <Notification />}
         {errMess && <Notification error={errMess} />}
-
-        {coctails.length > 0 && (
+        {processedRecipes.length > 0 && (
           <LoadNewRecipes newRecipes={this.handleLoadNewRecipes} />
         )}
       </MainTemplate>
