@@ -12,7 +12,7 @@ App was build using ReactJS, Redux, API
 
 ## Live Preview
 ###### The app is hosted on Netlify: 
-https://5e7d0f37b870298a83120253--recipe-reactjs.netlify.com/recommended
+https://recipe-reactjs.netlify.com/
 
 ## Quick Start
 
