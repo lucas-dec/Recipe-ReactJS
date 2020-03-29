@@ -45,7 +45,6 @@ const Sidebar = () => (
     <Navi>
       <ButtonNav
         as={NavLink}
-        exact
         to="/recommended"
         activeclass="active"
         icon={recommendedIcon}
@@ -55,7 +54,6 @@ const Sidebar = () => (
 
       <ButtonNav
         as={NavLink}
-        exact
         to="/maincourse"
         activeclass="active"
         icon={dinnerIcon}
@@ -65,7 +63,6 @@ const Sidebar = () => (
 
       <ButtonNav
         as={NavLink}
-        exact
         to="/coctails"
         activeclass="active"
         icon={blenderIcon}
@@ -75,7 +72,6 @@ const Sidebar = () => (
 
       <ButtonNav
         as={NavLink}
-        exact
         to="/salad"
         activeclass="active"
         icon={saladIcon}
