@@ -39,14 +39,14 @@ const Navi = styled.div`
 
 const Sidebar = () => (
   <Wrapper>
-    <Link to="/">
+    <Link to="/recommended">
       <Logo src={logoImage} />
     </Link>
     <Navi>
       <ButtonNav
         as={NavLink}
         exact
-        to="/"
+        to="/recommended"
         activeclass="active"
         icon={recommendedIcon}
       >
